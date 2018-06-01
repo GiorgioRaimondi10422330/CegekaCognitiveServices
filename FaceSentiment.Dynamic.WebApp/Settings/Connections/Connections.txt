@@ -1,0 +1,1 @@
+Server=tcp:cegekafacesentiment.database.windows.net,1433;Initial Catalog=FaceSentimentDatabase;Persist Security Info=False;User ID=ServerAdmin;Password=Familyfour4;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;|||57807fd35bf54f0fa59be422bd39a3a5|||https://westeurope.api.cognitive.microsoft.com/face/v1.0|||10|||3

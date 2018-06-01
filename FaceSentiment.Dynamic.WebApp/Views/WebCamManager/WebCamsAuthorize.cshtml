@@ -1,0 +1,184 @@
+﻿@model IEnumerable<FaceSentiment.Dynamic.WebApp.Models.CameraValues>
+
+<hr />
+<hr />
+<h4>WebCam Manager</h4>
+<hr />
+<p>
+    <a href="@Url.Action("Create")" style="color:black">
+        <img src="/Media/NewCameraImage" onmouseover="NewCameraMouseOver(this)" onmouseout="NewCameraMouseOut(this)" width="30" height="30" />New Camera
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Start
+        </th>
+        <th>
+            Stop
+        </th>
+        <th>
+            @Html.DisplayName("Type");
+        </th>
+        <th>
+            @Html.DisplayName("Position");
+        </th>
+        <th>
+            @Html.DisplayName("Location");
+        </th>
+        <th>
+            @Html.DisplayName("Status");
+        </th>
+        <th>
+            @Html.DisplayName("Face / Request");
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img alt="Start" src="/Media/StartButtonImage" onmouseover="StartMouseOver(this)" onmouseout="StartMouseOut(this)" onclick='StartVideo(this)' data-assigned-id="@item.Id.ToString()" width="38" height="38" />
+            </td>
+            <td>
+                <img alt="Stop" src="/Media/StopButtonImage" onmouseover="StopMouseOver(this)" onmouseout="StopMouseOut(this)" onclick='StopVideo(this)' data-assigned-id="@item.Id.ToString()" width="35" height="35" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td id="Status @item.Id.ToString()">
+                Stopped
+            </td>
+            <td id="Face @item.Id.ToString()">
+                0 / 0
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id.ToString() },new { @style = "color:black" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id.ToString() }, new { @style = "color:black" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id.ToString() }, new { @style = "color:black" })|
+                <!--@Html.ActionLink("View", "ViewVideo","Video", new { id = item.Id.ToString() }, new { @style = "color:black", @class="btn btn-default" })-->
+                <!--<input type="button" value="View" onclick='ViewVideo(this)' data-assigned-id="@item.Id.ToString()" />-->
+            </td>
+        </tr>
+
+    }
+</table>
+
+
+<script type="text/javascript">
+    var listIdWorking = [];
+    var populate = function () {
+        var m = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < m.length;i++)
+        {
+            listIdWorking.push(m[i].Id);
+        }
+
+    };
+    var StartVideo = function (elem) {
+        var Id = $(elem).data('assigned-id');
+        $.ajax({
+            type: 'GET',
+            url: '/Video/Start/' + Id,
+            dataType: 'json',
+            success: function (data) {
+                alert("Started Stream for Camera:\n"+ data.Type + ": " + data.Location + " " + data.Position );
+                //listIdWorking.push(data.Id);
+            },
+            error: function (data) {
+                alert("Error while starting the camera");
+            }
+        })
+    };
+    var StopVideo = function (elem) {
+        var Id = $(elem).data('assigned-id');
+        $.ajax({
+            type: 'GET',
+            url: '/Video/Stop/' + Id,
+            dataType: 'json',
+            success: function (data) {
+                alert("Stopped Stream for Camera:\n" + data.Type +": " +data.Location +" "+data.Position );
+                var index = listIdWorking.indexOf(data.Id);
+                var cameraStatusId = "Status " + data.Id;
+                document.getElementById(cameraStatusId).innerHTML = "Stopped";
+            },
+            error: function (data) {
+                alert("Error while stopping the camera");
+            }
+        })
+    };
+    var ViewVideo = function (elem) {
+        var Id = $(elem).data('assigned-id');
+        $.ajax({
+            type: 'GET',
+            url: '/Video/ViewVideo/' + Id,
+            dataType: 'json',
+            success: function (data) {
+                alert("Camera " + data.Id + " : \nStatus :" + data.Status);
+            },
+            error: function (data) {
+                alert("Error");
+            }
+        })
+    };
+
+    var StartMouseOver = function (elem) {
+        $(elem).attr("src", "/Media/StartButtonOnmouseImage");
+    };
+    var StartMouseOut = function (elem) {
+        $(elem).attr("src", "/Media/StartButtonImage");
+    };
+    var StopMouseOver = function (elem) {
+        $(elem).attr("src", "/Media/StopButtonOnmouseImage");
+    };
+    var StopMouseOut = function (elem) {
+        $(elem).attr("src", "/Media/StopButtonImage");
+    };
+    var NewCameraMouseOver = function (elem) {
+        $(elem).attr("src", "/Media/NewCameraOnMouseImage");
+    };
+    var NewCameraMouseOut = function (elem) {
+        $(elem).attr("src", "/Media/NewCameraImage");
+    };
+    var ascStatus= function(){
+        if (listIdWorking.length != 0 ) {
+            listIdWorking.forEach(function(camId){
+
+                var cameraStatusId = "Status " + camId;
+                var cameraFacedetectId = "Face " + camId;
+                $.ajax({
+                    type: 'GET',
+                    url: '/Video/GetStatus/' + camId,
+                    dataType: 'json',
+                    success: function (data) {
+                        document.getElementById(cameraStatusId).innerHTML = data.Status;
+                        document.getElementById(cameraFacedetectId).innerHTML = data.FaceDetectedOnRequest[0] + " / " + data.FaceDetectedOnRequest[1];
+                    },
+                    error: function (data) {
+                        document.getElementById(cameraStatusId).innerHTML = "Status Error";
+                    }
+                });
+
+            });
+        }
+
+        setTimeout(ascStatus, 5000);
+    };
+    var ShowError = function () {
+        var v=@Html.Raw(Json.Encode(ViewBag.Error));
+        if (v!= null && v!="") {
+            alert(v);
+            v= null;
+        }
+    }
+    populate();
+    ascStatus();
+    ShowError()
+
+</script>

@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<hb />
+<div class="jumbotron">
+    <h1>Cegeka Cognitive Services</h1>
+    <!--<p class="lead">Gestisci le tue WebCam, Analizza automaticamente il sentimento Facciale</p>-->
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <div align="center">
+            <h3>Webcam Management</h3>
+            <p>Manage your devices</p>
+            <a href="/WebCamManager/WebCams">
+                <img src="/Media/WebcamImage" height="150" width="200" />
+            </a>
+            <hr />
+            <p><a class="btn btn-default" href="https://www.ispyconnect.com/sources.aspx">Learn more &raquo;</a></p>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div align="center">
+            <h3>Face Detection</h3>
+            <p>Discover face presence</p>
+            <img src="/Media/FaceDetectionImage" height="150" width="150" />
+            <hr />
+            <p><a class="btn btn-default" href="http://eyalarubas.com/face-detection-and-recognition.html">Learn more &raquo;</a></p>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div align="center">
+            <h3>Sentiment Recognition</h3>
+            <p>Find out the costumers agreement</p>
+            <img src="/Media/AnalysisImage" height="150" width="300" />
+            <hr />
+            <p><a class="btn btn-default" href="https://azure.microsoft.com/it-it/services/cognitive-services/face/">Learn more &raquo;</a></p>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div align="center">
+            <h3>Costumers Prevision</h3>
+            <p>Predict the trend</p>
+            <img src="/Media/PrevisionImage" height="150" width="150" />
+            <hr />
+            <p><a class="btn btn-default" href="https://www.brandwatch.com/blog/how-to-write-customer-analysis/">Learn more &raquo;</a></p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var loadVideo = function () {
+        $.ajax({
+            type: 'GET',
+            url: '/Video/GetStatus/' + 1,
+            dataType: 'json',
+            success: function (data) {
+            }
+        });
+    }
+
+    loadVideo();
+</script>

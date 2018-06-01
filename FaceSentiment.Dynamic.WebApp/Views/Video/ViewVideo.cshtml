@@ -1,0 +1,38 @@
+﻿@model FaceSentiment.Dynamic.WebApp.Models.CameraValues
+
+<hr />
+<hr />
+
+<h4>View of @Model.ToString()</h4>
+
+<div align="center">
+    <img src="/Media/LoadingGif" id="CameraVideoShower" onerror="ErrorImage(this)"/>
+</div> 
+<div>
+    @Html.ActionLink("Back to Cameras", "WebCams", "WebCamManager",null, new { @class = "btn btn-default" })
+</div>
+
+<script type="text/javascript">
+    var Size = @Html.Raw(Json.Encode(ViewBag.Size));
+    var resize = function () {
+        $("#CameraVideoShower").attr("width", Size.Width);
+        $("#CameraVideoShower").attr("height", Size.Height);
+    }
+    var ErrorImage = function (elem) {
+        if (elem.src != "/Media/LoadingGif")
+            elem.src = "/Media/LoadingGif";
+    }
+    var loadingImages = function () {
+        resize();
+        setTimeout(function () { }, 2000);
+        getFrame();
+    }
+    var getFrame = function () {
+        $("#CameraVideoShower").attr("src", "/Video/GetFrame/" +"@Model.Id.ToString()");
+
+        setTimeout(getFrame, 5000);
+    }
+    loadingImages();
+</script>
+
+

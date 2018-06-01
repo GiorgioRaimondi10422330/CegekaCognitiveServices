@@ -1,0 +1,209 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+body {
+    border: 5px solid black;
+    margin: auto;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.main-container {
+    border: 3px solid black;
+    margin: auto;
+    box-sizing: border-box;
+    position: relative;
+    width: 95%;
+    height: auto;
+    background-color: #ceffcc;
+    background: linear-gradient(to top,#daffb3,#eafbfb);
+}
+
+.side-column {
+    display: inline-block;
+    border: 2px solid gray;
+    margin-top: 20px;
+    margin-left: 7px;
+    margin-bottom: 15px;
+    position: relative;
+    padding: 5px;
+    width: 17%;
+    /*height: 1000px;*/
+    background-color: #e6f4ff;
+}
+
+.aside-content {
+    /*border: 1px solid black;*/
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    height: 17%;
+    text-align: center;
+}
+
+.window {
+    display: inline-block;
+    float: right;
+    /*border-left: 1px dashed black;*/
+    margin-top: 17px;
+    margin-right: 7px;
+    position: relative;
+    width: 80%;
+}
+
+.streamView {
+    border: 2px solid gray;
+    position: relative;
+    width: 95%;
+    height: 82%;
+    margin-right: 10px;
+    margin-left: 27px;
+}
+
+.various {
+    border: 2px solid gray;
+    position: absolute;
+    width: auto;
+    height: auto;
+    margin-top: 10px;
+    margin-left: 27px;
+    background-color: #e6f4ff;
+}
+
+
+
+#d1 label, #d3 label {
+    display: block;
+    margin-top: 10px;
+    margin-left: 20px;
+    float: left;
+}
+
+#d1 input, #d3 input {
+    display: block;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 75%;
+    float: left;
+}
+
+#s1, #s2 {
+    border: 1px solid gray;
+    height: 20px;
+    margin-bottom: 20px;
+}
+
+#d2 .d2-1, #d4 .d2-1 {
+    display: block;
+    height: 40px;
+    width: 90%;
+    padding-top: 24px;
+    padding-left: 11px;
+    align-content: center;
+}
+
+#d2 input, #d4 input {
+    height: 45px;
+    width: 95%;
+    border-radius: 4px;
+}
+
+.spanElem {
+    float: left;
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
+#s1 {
+    margin-left: 15px;
+}
+
+#s2 {
+    margin-left: 29px;
+}
+
+
+
+#d6 {
+    display: inline-block;
+    /*border: 1px solid red;*/
+    margin: 10px;
+    float: left;
+    width: auto;
+    height: auto;
+}
+
+    #d6 textarea {
+        margin: 20px;
+        margin-top: 2px;
+    }
+
+    #d6 label {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+#d7 {
+    display: inline-block;
+    /*border: 1px solid red;*/
+    margin: 10px;
+    float: right;
+    height: auto;
+    width: auto;
+}
+
+.ckbox {
+    display: inline-block;
+    margin: 10px;
+    float: right;
+    text-align: left;
+    height: auto;
+}
+
+#d7-1 label, #d7-2 label {
+    text-align: left;
+    margin-right: 20px;
+}
+
+
+
+.selItem {
+    display: inline-block;
+    margin: 10px;
+    float: left;
+    height: auto;
+    width: auto;
+}
+
+.navbar-inverse {
+    background-color: #0097ff !important;
+    color: black !important;
+}
+
+body {
+    background-color: #99ccff;
+}

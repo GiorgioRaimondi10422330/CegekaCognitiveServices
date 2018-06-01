@@ -1,0 +1,11 @@
+VideoAnalyser/WebCamIp: Corridoio Entrance / VideoOnStream /30/05/2018 09:46:54 : Stream not Working
+SnapshotStreamManager/WebCamIp: Corridoio Exit/.  / None /30/05/2018 10:33:18 : Error while Streaming
+ Thread was being aborted.
+FaceSentiment.Dynamic.WebApp.Models.FaceSentimentManager / None /30/05/2018 10:33:18 : Thread was being aborted.
+SnapshotStreamManager/WebCamIp: Corridoio Exit/.  / None /30/05/2018 15:06:03 : Error while Streaming
+ Unable to connect to the remote server
+VideoAnalyser/WebCamIp: Corridoio Entrance / VideoOnStream /30/05/2018 15:06:14 : Stream not Working
+VideoAnalyser/WebCamIp: Corridoio Entrance / VideoOnStream /6/1/2018 2:12:33 PM : Stream not Working
+VideoAnalyser/WebCamIp: Corridoio Entrance / VideoOnStream /6/1/2018 2:20:38 PM : Stream not Working
+VideoAnalyser/WebCamIp: Corridoio Entrance / VideoOnStream /6/1/2018 2:34:38 PM : Stream not Working
+VideoAnalyser/WebCamIp: Corridoio Entrance / VideoOnStream /6/1/2018 2:36:04 PM : Stream not Working

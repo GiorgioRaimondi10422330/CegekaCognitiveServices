@@ -1,0 +1,94 @@
+﻿@model IEnumerable<FaceSentiment.Dynamic.WebApp.Models.CameraValues>
+
+<hr />
+<hr />
+<h4>WebCam Manager</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Type");
+        </th>
+        <th>
+            @Html.DisplayName("Position");
+        </th>
+        <th>
+            @Html.DisplayName("Location");
+        </th>
+        <th>
+            @Html.DisplayName("Status");
+        </th>
+        <th>
+            @Html.DisplayName("Face / Request");
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td id="Status @item.Id.ToString()">
+                Stopped
+            </td>
+            <td id="Face @item.Id.ToString()">
+                0 / 0
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script type="text/javascript">
+    var listIdWorking = [];
+    var populate = function () {
+        var m = @Html.Raw(Json.Encode(Model));
+        var s = "";
+        for (var i = 0; i < m.length;i++)
+        {
+            listIdWorking.push(m[i].Id);
+        }
+    };
+
+    var ascStatus = function () {
+        if (listIdWorking.length != 0) {
+            listIdWorking.forEach(function (camId) {
+                var cameraStatusId = "Status " + camId;
+                var cameraFacedetectId = "Face " + camId;
+                $.ajax({
+                    type: 'GET',
+                    url: '/Video/GetStatus/' + camId,
+                    dataType: 'json',
+                    success: function (data) {
+                        document.getElementById(cameraStatusId).innerHTML = data.Status;
+                        document.getElementById(cameraFacedetectId).innerHTML = data.FaceDetectedOnRequest[0] + " / " + data.FaceDetectedOnRequest[1];
+                    },
+                    error: function (data) {
+                        document.getElementById(cameraStatusId).innerHTML = "Status Error";
+                    }
+                });
+
+            });
+        }
+
+        setTimeout(ascStatus, 5000);
+    };
+    
+    
+    var ShowError = function () {
+        var v=@Html.Raw(Json.Encode(ViewBag.Error));
+        if (v!= null && v!="") {
+            alert(v);
+            v= null;
+        }
+    }
+    populate();
+    ascStatus();
+    ShowError();
+</script>

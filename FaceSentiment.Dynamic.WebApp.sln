@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceSentiment.Dynamic.WebApp", "FaceSentiment.Dynamic.WebApp\FaceSentiment.Dynamic.WebApp.csproj", "{90A7B179-50AF-40C0-AFEF-15E1993A011C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90A7B179-50AF-40C0-AFEF-15E1993A011C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90A7B179-50AF-40C0-AFEF-15E1993A011C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90A7B179-50AF-40C0-AFEF-15E1993A011C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90A7B179-50AF-40C0-AFEF-15E1993A011C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E120CB5F-1865-4172-94A8-F1A626B0CD1B}
+	EndGlobalSection
+EndGlobal
